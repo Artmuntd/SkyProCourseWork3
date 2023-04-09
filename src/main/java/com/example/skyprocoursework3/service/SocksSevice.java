@@ -8,13 +8,15 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.TreeMap;
+
 @Service
 public class SocksSevice {
     private  final  FilesService filesService;
     private final ObjectMapper objectMapper;
     private ArrayList<Socks> socksArrayList = new ArrayList<>();
 
-    private  final Map<Socks,Integer> socksMap = new HashMap<>();
+    private Map<Socks,Integer> socksMap = new HashMap<>();
 
     public SocksSevice(FilesService filesService, ObjectMapper objectMapper) {
         this.filesService = filesService;
@@ -76,18 +78,8 @@ public class SocksSevice {
         }
         return totalSocksCount;
     }
+    public  void delSocks(){
+        socksMap = new TreeMap<>();
 
-
-    public ArrayList<Socks> deleteSocks(Socks socks){
-        ArrayList<Socks> map1 = new ArrayList<>();
-        for(Socks test : socksArrayList){
-            if (test.equals(socks)){
-                map1.add(test);
-                socksArrayList.remove(test);
-
-            }
-        }
-
-        return map1;
     }
 }

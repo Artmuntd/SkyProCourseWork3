@@ -21,19 +21,21 @@ public class SocksController {
 
 
     @PostMapping("/api/socks")
-    public ResponseEntity<String> registerIncome(@RequestBody Socks socks) {
+    public ResponseEntity<Void> registerIncome(@RequestBody Socks socks) {
         try {
-            // добавление партии носков на склад
+
             socksSevice.addSocks(socks);
-            return ResponseEntity.ok("Приход успешно зарегистрирован.");
+            return ResponseEntity.ok().build();
         } catch (IllegalArgumentException e) {
-            return ResponseEntity.badRequest().body(e.getMessage());
+
+            return ResponseEntity.badRequest().build();
         } catch (Exception e) {
+
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
     }
 
-    @GetMapping("/socks")
+    @GetMapping("/getSocks")
     public ResponseEntity<String> getSocksQuantity(@RequestParam String color,
                                                    @RequestParam Integer size,
                                                    @RequestParam Integer cottonPartMin,
@@ -48,13 +50,9 @@ public class SocksController {
         }
     }
 
-    @PostMapping("/socks/write-off")
-    public ResponseEntity delSocks(@RequestBody Socks socks){
-        ArrayList<Socks> socksArrayList = socksSevice.deleteSocks(socks);
-        if (socksArrayList == null) {
-            return ResponseEntity.status(404).build();
-        }
-        return ResponseEntity.ok(socksArrayList);
+    @DeleteMapping("/socks/write-off")
+    public ResponseEntity <Void> delSocks() {
+        socksSevice.delSocks();
+        return ResponseEntity.ok().build();
     }
-
 }

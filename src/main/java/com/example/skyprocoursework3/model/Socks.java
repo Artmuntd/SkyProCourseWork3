@@ -12,6 +12,7 @@ public class Socks {
     private SocksColor socksColor;
     private SocksSize socksSize;
     private  final int cottonPercentage;
+    private Integer quantity;
 
 
     public Socks(SocksColor socksColor, SocksSize socksSize, int cottonPercentage) {
@@ -54,11 +55,16 @@ public class Socks {
        return socksSize;
     }
 
-    public int getMaterial() {
-        return 0;
-    }
 
     public Integer getQuantity() {
-        return 0;
+        return quantity;
+    }
+
+    public void setQuantity(Integer quantity) {
+        this.quantity = quantity;
+    }
+
+    public int getMaterial() {
+        return getMaterial();
     }
 }
