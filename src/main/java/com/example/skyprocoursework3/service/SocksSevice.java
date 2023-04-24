@@ -12,17 +12,11 @@ import java.util.TreeMap;
 
 @Service
 public class SocksSevice {
-    private  final  FilesService filesService;
-    private final ObjectMapper objectMapper;
-    private ArrayList<Socks> socksArrayList = new ArrayList<>();
+
 
     private Map<Socks,Integer> socksMap = new HashMap<>();
 
-    public SocksSevice(FilesService filesService, ObjectMapper objectMapper) {
-        this.filesService = filesService;
-        this.objectMapper = objectMapper;
 
-    }
 
     public void addSocks(Socks socksDto) {
         validateRequest(socksDto);
@@ -36,14 +30,7 @@ public class SocksSevice {
     }
 
 
-    private SocksDto mapToSocksDto(Socks socks, int quantity) {
-        SocksDto socksDto = new SocksDto();
-        socksDto.setSocksColor(socks.setSocksColor());
-        socksDto.setSocksSize(socks.getSize());
-        socksDto.setCottonPercentage(socks.getMaterial());
-        socksDto.setQuantity(quantity);
-        return socksDto;
-    }
+
 
     private void validateRequest(Socks socksDto) {
         if(socksDto.getSocksColor() == null || socksDto.getSocksSize() == null){

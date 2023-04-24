@@ -20,7 +20,7 @@ public class SocksController {
     }
 
 
-    @PostMapping("/api/socks")
+    @PostMapping()
     public ResponseEntity<Void> registerIncome(@RequestBody Socks socks) {
         try {
 
@@ -50,7 +50,7 @@ public class SocksController {
         }
     }
 
-    @DeleteMapping("/socks/write-off")
+    @DeleteMapping("/write-off")
     public ResponseEntity <Void> delSocks() {
         socksSevice.delSocks();
         return ResponseEntity.ok().build();
